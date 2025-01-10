@@ -5,6 +5,7 @@ import { UIMgr } from './UI/UIMgr';
 import { TimerMgr } from './Timer/TimerMgr';
 import { AudioMgr } from './Audio/AudioMgr';
 import { EventMgr } from './Event/EventMgr';
+import { ModelMgr } from './Model/ModelMgr';
 
 const { ccclass, property } = _decorator;
 
@@ -17,6 +18,7 @@ export class App extends Component {
     private _timerMgr: TimerMgr = null;
     private _resourceMgr: ResourceMgr = null;
     private _uiMgr: UIMgr = null;
+    private _modelMgr: ModelMgr = null;
 
     public static get instance(): App {
         return this._instance;
@@ -46,6 +48,10 @@ export class App extends Component {
         return this._instance?._uiMgr;
     }
 
+    public static get model(): ModelMgr {
+        return this._instance?._modelMgr;
+    }
+
     onLoad() {
         if (App._instance) {
             this.node.destroy();
@@ -63,6 +69,7 @@ export class App extends Component {
         this._audioMgr = new AudioMgr();
         this._timerMgr = new TimerMgr();
         this._resourceMgr = new ResourceMgr();
+        this._modelMgr = new ModelMgr();
         this._uiMgr = new UIMgr(this.node);
     }
 
